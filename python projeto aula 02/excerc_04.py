@@ -1,0 +1,35 @@
+vendas = []
+
+while True:
+    nome = input("Digite o nome do produto vendido (ou 'fim' para encerrar): ").strip()
+    if nome.lower() == "fim":
+        break
+    try:
+        preco = float(input(f"Digite o preço de {nome}: "))
+    except ValueError:
+        print("Preço inválido! Tente novamente.")
+        continue
+    vendas.append([nome, preco])
+
+if not vendas:
+    print("Nenhuma venda registrada.")
+else:
+
+    total = sum(preco for _, preco in vendas)
+
+
+    produto_mais_caro = max(vendas, key=lambda x: x[1])
+    produto_mais_barato = min(vendas, key=lambda x: x[1])
+
+
+    print("Relatório do dia:")
+    print(f"Valor total arrecadado: R$ {total:.2f}")
+    print(f"Produto mais caro: {produto_mais_caro[0]} - R$ {produto_mais_caro[1]:.2f}")
+    print(f"Produto mais barato: {produto_mais_barato[0]} - R$ {produto_mais_barato[1]:.2f}")
+
+    busca = input("Digite o nome do produto para consultar se foi vendido: ").strip()
+    encontrado = any(busca.lower() == nome.lower() for nome, _ in vendas)
+    if encontrado:
+        print(f"O produto '{busca}' foi vendido hoje.")
+    else:
+        print(f"O produto '{busca}' não foi vendido hoje.")
