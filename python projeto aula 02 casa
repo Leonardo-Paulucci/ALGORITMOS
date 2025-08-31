@@ -1,1 +1,21 @@
+livros = [
+    ["Senhor dos Anéis", "Leandro", 6],
+    ["Romeu e Julieta", "Marcos", 13],
+    ["Naruto", "Marina", 1],
+    ["A Cabana", "Carla", 15],
+    ["Peter Pan", "Larissa", 7]
+]
 
+livros_mais_7 = [livro for livro in livros if livro[2] > 7]
+print(" Livros emprestados há mais de 7 dias:")
+for titulo, usuario, dias in livros_mais_7:
+    print(f"- {titulo} ({usuario}) - {dias} dias")
+
+
+livro_mais_tempo = max(livros, key=lambda x: x[2])
+print("Livro emprestado há mais tempo:")
+print(f"- {livro_mais_tempo[0]} ({livro_mais_tempo[1]}) - {livro_mais_tempo[2]} dias")
+
+usuarios = [livro[1] for livro in livros]
+print("Lista de usuários:")
+print(usuarios)
